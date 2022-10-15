@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
-
 import '../models/taskListItem.dart';
 
 class OutlineScreen extends StatelessWidget {
@@ -38,6 +36,12 @@ class OutlineScreen extends StatelessWidget {
               ));
         },
         itemCount: addedTasks.length,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add, color: Colors.white),
+        backgroundColor: Colors.green[600],
+        onPressed: () => null,
       ),
     );
   }
