@@ -14,12 +14,6 @@ enum Urgency {
   Max,
 }
 
-enum Context {
-  Home,
-  Office,
-  Someday,
-}
-
 class TaskListItem {
   final String id;
   final String title;
@@ -31,7 +25,7 @@ class TaskListItem {
   final Importance? importance;
   final Urgency? urgency;
   final bool isStarred;
-  final Context? context;
+  final String? context;
   final bool? isFolder;
   final bool? isProject;
 
@@ -46,7 +40,7 @@ class TaskListItem {
     this.importance,
     this.urgency,
     this.isStarred = false,
-    this.context,
+    this.context = ' ',
     this.isFolder = false,
     this.isProject = false,
   });
