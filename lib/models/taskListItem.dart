@@ -17,6 +17,7 @@ enum Urgency {
 class TaskListItem {
   final String id;
   final String title;
+  final bool isSelected;
   final String? notes;
   final DateTime dueDate;
   final DateTime? startDate;
@@ -32,6 +33,7 @@ class TaskListItem {
   TaskListItem({
     required this.id,
     required this.title,
+    this.isSelected = false,
     this.notes,
     required this.dueDate,
     this.startDate,

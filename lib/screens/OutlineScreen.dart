@@ -3,7 +3,14 @@ import 'package:intl/intl.dart';
 import '../models/taskListItem.dart';
 import '../screens/TaskPreviewScreen.dart';
 
-class OutlineScreen extends StatelessWidget {
+class OutlineScreen extends StatefulWidget {
+  @override
+  State<OutlineScreen> createState() => _OutlineScreenState();
+}
+
+class _OutlineScreenState extends State<OutlineScreen> {
+  int? selectedIndex = null;
+
   final List<TaskListItem> addedTasks = [
     TaskListItem(
       id: 't1',
@@ -27,14 +34,21 @@ class OutlineScreen extends StatelessWidget {
       body: ListView.builder(
         itemBuilder: (context, index) {
           return Card(
+            //                           child: (GestureDetector(onTap: () {
+            //   Navigator.of(context).pushNamed(TaskPreviewScreen.routeName, arguments: addedTasks[index].id);
+            // }),),
+
             elevation: 5,
             margin: EdgeInsets.symmetric(vertical: 4, horizontal: 5),
             child: ListTile(
-              //               child: (GestureDetector(onTap: () {
-              //   Navigator.of(context).pushNamed(TaskPreviewScreen.routeName, arguments: addedTasks[index].id);
-              // },),),
-
               contentPadding: EdgeInsetsDirectional.only(start: 3),
+              selected: selectedIndex == index ? true : false,
+              selectedTileColor: Color.fromARGB(255, 210, 232, 250),
+              onTap: () {
+                setState(() {
+                  selectedIndex = index;
+                });
+              },
               leading: IconButton(
                 onPressed: null,
                 icon: Icon(Icons.check_box_outline_blank,
@@ -49,9 +63,11 @@ class OutlineScreen extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     addedTasks[index].context.toString(),
+                    style: TextStyle(color: Colors.grey[800]),
                   ),
                   Text(
                     DateFormat.MMMEd().format(addedTasks[index].dueDate),
+                    style: TextStyle(color: Colors.grey[800]),
                   ),
                 ],
               ),
