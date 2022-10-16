@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/taskListItem.dart';
+import '../screens/TaskPreviewScreen.dart';
 
 class OutlineScreen extends StatelessWidget {
   final List<TaskListItem> addedTasks = [
@@ -29,6 +30,10 @@ class OutlineScreen extends StatelessWidget {
             elevation: 5,
             margin: EdgeInsets.symmetric(vertical: 4, horizontal: 5),
             child: ListTile(
+              //               child: (GestureDetector(onTap: () {
+              //   Navigator.of(context).pushNamed(TaskPreviewScreen.routeName, arguments: addedTasks[index].id);
+              // },),),
+
               contentPadding: EdgeInsetsDirectional.only(start: 3),
               leading: IconButton(
                 onPressed: null,

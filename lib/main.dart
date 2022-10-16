@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-import './models/palette.dart';
+import 'models/Palette.dart';
 
-import './screens/outline.dart';
+import 'screens/OutlineScreen.dart';
+import 'screens/TaskPreviewScreen.dart';
+import 'screens/TaskEditScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,7 +37,16 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: OutlineScreen(),
+      home: PageView(
+        children: [
+          OutlineScreen(),
+          TaskPreviewScreen(),
+        ],
+      ),
+      routes: {
+        TaskPreviewScreen.routeName: (context) => TaskPreviewScreen(),
+        TaskEditScreen.routeName: (context) => TaskEditScreen(),
+      },
     );
   }
 }
