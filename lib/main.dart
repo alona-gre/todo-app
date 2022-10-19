@@ -42,15 +42,10 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: PageView(
-          children: [
-            OutlineScreen(),
-            TaskPreviewScreen(),
-          ],
-        ),
+        home: OutlineScreen(),
         routes: {
-          TaskPreviewScreen.routeName: (context) => TaskPreviewScreen(),
-          TaskEditScreen.routeName: (context) => TaskEditScreen(),
+          TaskPreviewScreen.routeName: (ctx) => TaskPreviewScreen(),
+          TaskEditScreen.routeName: (ctx) => TaskEditScreen(),
         },
       ),
     );
