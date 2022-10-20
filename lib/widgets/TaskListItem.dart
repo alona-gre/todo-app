@@ -5,19 +5,19 @@ import 'package:todo_app/screens/TaskPreviewScreen.dart';
 
 import '../providers/tasks.dart';
 
-class OutlineTaskListItem extends StatefulWidget {
+class TaskListItem extends StatefulWidget {
   final String id;
   final String title;
   final String? context;
   final DateTime dueDate;
 
-  OutlineTaskListItem(this.id, this.title, this.context, this.dueDate);
+  TaskListItem(this.id, this.title, this.context, this.dueDate);
 
   @override
-  State<OutlineTaskListItem> createState() => _OutlineTaskListState();
+  State<TaskListItem> createState() => _OutlineTaskListState();
 }
 
-class _OutlineTaskListState extends State<OutlineTaskListItem> {
+class _OutlineTaskListState extends State<TaskListItem> {
   //int? selectedIndex = null;
 
   @override

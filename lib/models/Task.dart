@@ -14,7 +14,7 @@ enum Urgency {
   Max,
 }
 
-class TaskListItem {
+class Task {
   final String id;
   final String title;
   final bool isSelected;
@@ -30,7 +30,7 @@ class TaskListItem {
   final bool? isFolder;
   final bool? isProject;
 
-  TaskListItem({
+  Task({
     required this.id,
     required this.title,
     this.isSelected = false,

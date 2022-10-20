@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-import '../models/TaskListItem.dart';
+import '../models/Task.dart';
 
 class Tasks with ChangeNotifier {
-  final List<TaskListItem> _items = [
-    TaskListItem(
+  final List<Task> _items = [
+    Task(
       id: 't1',
       title: 'Buy milk',
       context: '@Home',
       dueDate: DateTime.now(),
     ),
-    TaskListItem(
+    Task(
       id: 't2',
       title: 'Call boss',
       dueDate: DateTime.now(),
     ),
   ];
 
-  List<TaskListItem> get items {
+  List<Task> get items {
     return [..._items];
   }
 

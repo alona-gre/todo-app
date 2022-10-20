@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../models/taskListItem.dart';
-import '../screens/TaskPreviewScreen.dart';
-
-import '../widgets/OutlineTaskListItem.dart';
+import '../models/Task.dart';
+import '../widgets/TaskListItem.dart';
 
 class OutlineScreen extends StatelessWidget {
-  final List<TaskListItem> loadedTasks = [
-    TaskListItem(
+  final List<Task> loadedTasks = [
+    Task(
       id: 't1',
       title: 'Buy milk',
       context: '@Home',
       dueDate: DateTime.now(),
     ),
-    TaskListItem(
+    Task(
       id: 't2',
       title: 'Call boss',
       dueDate: DateTime.now(),
@@ -27,7 +25,7 @@ class OutlineScreen extends StatelessWidget {
         title: const Text('Outline'),
       ),
       body: ListView.builder(
-        itemBuilder: (context, i) => OutlineTaskListItem(
+        itemBuilder: (context, i) => TaskListItem(
           loadedTasks[i].id,
           loadedTasks[i].title,
           loadedTasks[i].context,
