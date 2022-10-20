@@ -22,11 +22,20 @@ class _OutlineTaskListState extends State<TaskListItem> {
 
   @override
   Widget build(BuildContext context) {
-    final tasksData = Provider.of<Tasks>(context);
-    final tasks = tasksData.items;
+    final task = Provider.of<Tasks>(context);
 
     return GestureDetector(
-      onDoubleTap: () {},
+      onPanUpdate: (details) {
+        // Swiping in right direction.
+        if (details.delta.dx > 0) {}
+        // Swiping in left direction.
+        if (details.delta.dx < 0) {
+          Navigator.of(context).pushNamed(
+            TaskPreviewScreen.routeName,
+            arguments: widget.id,
+          );
+        }
+      },
       child: Card(
         elevation: 5,
         margin: EdgeInsets.symmetric(vertical: 4, horizontal: 5),
