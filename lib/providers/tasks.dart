@@ -21,6 +21,13 @@ class Tasks with ChangeNotifier {
     return [..._items];
   }
 
+  Task findById(String id) {
+    //finds the task by id
+    return _items.firstWhere(
+      (tsk) => tsk.id == id,
+    );
+  }
+
   void addTask() {
     // tasks.add(value);
     notifyListeners();

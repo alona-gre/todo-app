@@ -15,12 +15,11 @@ class TaskPreviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final taskId =
-        ModalRoute.of(context)!.settings.arguments; // this is how we get the id
+    final taskId = ModalRoute.of(context)!.settings.arguments
+        as String; // this is how we get the id
 
-    final taskOnPreview = Provider.of<Tasks>(context).items.firstWhere(
-          (tsk) => tsk.id == taskId,
-        );
+    final taskOnPreview =
+        Provider.of<Tasks>(context, listen: false).findById(taskId);
 
     return Scaffold(
         appBar: AppBar(

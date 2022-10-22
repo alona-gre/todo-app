@@ -11,7 +11,7 @@ import '../providers/tasks.dart';
 class OutlineList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final tasksData = Provider.of<Tasks>(context);
+    final tasksData = Provider.of<Tasks>(context, listen: true);
     final tasks = tasksData.items;
 
     return ListView.builder(
