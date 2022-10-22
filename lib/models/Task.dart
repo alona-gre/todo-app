@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum Importance {
   Min,
   Less,
@@ -14,7 +16,7 @@ enum Urgency {
   Max,
 }
 
-class Task {
+class Task with ChangeNotifier {
   final String id;
   final String title;
   final bool isSelected;
@@ -25,7 +27,7 @@ class Task {
   final DateTime? reminder;
   final Importance? importance;
   final Urgency? urgency;
-  final bool isStarred;
+  bool isStarred;
   final String? context;
   final bool? isFolder;
   final bool? isProject;

@@ -15,7 +15,8 @@ class TaskPreviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final taskId = ModalRoute.of(context)!.settings.arguments; // this is the id
+    final taskId =
+        ModalRoute.of(context)!.settings.arguments; // this is how we get the id
 
     final taskOnPreview = Provider.of<Tasks>(context).items.firstWhere(
           (tsk) => tsk.id == taskId,
@@ -24,6 +25,20 @@ class TaskPreviewScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Task Preview'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  TaskEditScreen.routeName,
+                  arguments: taskId,
+                );
+              },
+              icon: Icon(
+                Icons.edit,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+            ),
+          ],
         ),
         body: Column(
           children: <Widget>[
@@ -39,8 +54,9 @@ class TaskPreviewScreen extends StatelessWidget {
                     foregroundColor: Colors.grey[800],
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) => TaskEditScreen()),
+                    Navigator.of(context).pushNamed(
+                      TaskEditScreen.routeName,
+                      arguments: taskId,
                     );
                   },
                   child: Text(
