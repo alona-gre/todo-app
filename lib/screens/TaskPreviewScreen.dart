@@ -28,14 +28,12 @@ class TaskPreviewScreen extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(
-                  TaskEditScreen.routeName,
-                  arguments: taskId,
-                );
+                Navigator.of(context)
+                    .pushNamed(TaskEditScreen.routeName, arguments: taskId);
               },
               icon: Icon(
                 Icons.edit,
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).primaryColor,
               ),
             ),
           ],
