@@ -16,8 +16,8 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Tasks(),
+    return ChangeNotifierProvider.value(
+      value: Tasks(),
       child: MaterialApp(
         title: 'To Do App',
         theme: ThemeData(

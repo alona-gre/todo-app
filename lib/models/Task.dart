@@ -48,4 +48,9 @@ class Task with ChangeNotifier {
     this.isFolder = false,
     this.isProject = false,
   });
+
+  void toggleStar() {
+    isStarred = !isStarred;
+    notifyListeners();
+  }
 }

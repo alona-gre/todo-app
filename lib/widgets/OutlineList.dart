@@ -15,8 +15,9 @@ class OutlineList extends StatelessWidget {
     final tasks = tasksData.items;
 
     return ListView.builder(
-      itemBuilder: (context, i) => ChangeNotifierProvider(
-        create: (c) => tasks[i],
+      itemBuilder: (context, i) => ChangeNotifierProvider.value(
+        // create: (c) => tasks[i],
+        value: tasks[i],
         child: TaskListItem(
             //   tasks[i].id,
             //   tasks[i].title,
