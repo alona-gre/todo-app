@@ -4,14 +4,15 @@ import 'package:intl/intl.dart';
 import 'package:todo_app/screens/TaskPreviewScreen.dart';
 
 import '../providers/tasks.dart';
+import '../models/Task.dart';
 
 class TaskListItem extends StatefulWidget {
-  final String id;
-  final String title;
-  final String? context;
-  final DateTime dueDate;
+  // final String id;
+  // final String title;
+  // final String? context;
+  // final DateTime dueDate;
 
-  TaskListItem(this.id, this.title, this.context, this.dueDate);
+  // TaskListItem(this.id, this.title, this.context, this.dueDate);
 
   @override
   State<TaskListItem> createState() => _OutlineTaskListState();
@@ -22,7 +23,7 @@ class _OutlineTaskListState extends State<TaskListItem> {
 
   @override
   Widget build(BuildContext context) {
-    final task = Provider.of<Tasks>(context);
+    final task = Provider.of<Task>(context);
 
     return GestureDetector(
       onPanUpdate: (details) {
@@ -32,7 +33,7 @@ class _OutlineTaskListState extends State<TaskListItem> {
         if (details.delta.dx < 0) {
           Navigator.of(context).pushNamed(
             TaskPreviewScreen.routeName,
-            arguments: widget.id,
+            arguments: task.id,
           );
         }
       },
@@ -54,18 +55,19 @@ class _OutlineTaskListState extends State<TaskListItem> {
                 size: 35, color: Colors.grey[400]),
           ),
           title: Text(
-            widget.title,
+            task.title,
+            //widget.title,
             style: Theme.of(context).textTheme.headline6,
           ),
           subtitle: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                widget.context.toString(),
+                task.context.toString(),
                 style: TextStyle(color: Colors.grey[800]),
               ),
               Text(
-                DateFormat.MMMEd().format(widget.dueDate),
+                DateFormat.MMMEd().format(task.dueDate),
                 style: TextStyle(color: Colors.grey[800]),
               ),
             ],

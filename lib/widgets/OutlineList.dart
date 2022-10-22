@@ -15,11 +15,14 @@ class OutlineList extends StatelessWidget {
     final tasks = tasksData.items;
 
     return ListView.builder(
-      itemBuilder: (context, i) => TaskListItem(
-        tasks[i].id,
-        tasks[i].title,
-        tasks[i].context,
-        tasks[i].dueDate,
+      itemBuilder: (context, i) => ChangeNotifierProvider(
+        create: (c) => tasks[i],
+        child: TaskListItem(
+            //   tasks[i].id,
+            //   tasks[i].title,
+            //   tasks[i].context,
+            //   tasks[i].dueDate,
+            ),
       ),
       itemCount: tasks.length,
     );
