@@ -32,4 +32,8 @@ class Tasks with ChangeNotifier {
     // tasks.add(value);
     notifyListeners();
   }
+
+  List<Task> get starredTasks {
+    return items.where((taskId) => taskId.isStarred).toList();
+  }
 }

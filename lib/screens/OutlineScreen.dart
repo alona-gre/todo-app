@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/OutlineList.dart';
+import '../widgets/MainDrawer.dart';
 
 class OutlineScreen extends StatelessWidget {
   @override
@@ -10,6 +11,7 @@ class OutlineScreen extends StatelessWidget {
         title: const Text('Outline'),
       ),
       body: OutlineList(),
+      drawer: MainDrawer(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green[600],

@@ -8,6 +8,7 @@ import './providers/tasks.dart';
 import '/screens/OutlineScreen.dart';
 import '/screens/TaskPreviewScreen.dart';
 import '/screens/TaskEditScreen.dart';
+import '/screens/StarredScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         routes: {
           TaskPreviewScreen.routeName: (ctx) => TaskPreviewScreen(),
           TaskEditScreen.routeName: (ctx) => TaskEditScreen(),
+          StarredScreen.routeName: (ctx) => StarredScreen(),
         },
       ),
     );
