@@ -27,6 +27,7 @@ class Task with ChangeNotifier {
   final DateTime? reminder;
   final Importance? importance;
   final Urgency? urgency;
+  final double timeRequired;
   bool isStarred;
   final String? context;
   final bool? isFolder;
@@ -43,6 +44,7 @@ class Task with ChangeNotifier {
     this.reminder,
     this.importance,
     this.urgency,
+    this.timeRequired = 0,
     this.isStarred = false,
     this.context = ' ',
     this.isFolder = false,

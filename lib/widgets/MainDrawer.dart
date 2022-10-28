@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:flutter/material.dart';
+import 'package:todo_app/screens/TodayScreen.dart';
 
 import '../screens/StarredScreen.dart';
 
@@ -59,6 +60,13 @@ class MainDrawer extends StatelessWidget {
             ],
           ),
           Divider(),
+          ListTile(
+            leading: Icon(Icons.calendar_today),
+            title: Text("Today"),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(TodayScreen.routeName);
+            },
+          ),
           ListTile(
             leading: Icon(Icons.folder),
             title: Text("All Tasks"),
