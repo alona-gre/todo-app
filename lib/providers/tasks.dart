@@ -15,10 +15,19 @@ class Tasks with ChangeNotifier {
     Task(
       id: 't2',
       title: 'Call boss',
-      dueDate: DateTime.now().subtract(
+      dueDate: DateTime.now().add(
         Duration(days: 2),
       ),
       timeRequired: 3.5,
+    ),
+    Task(
+      id: 't3',
+      title: 'Send a report',
+      context: '@Office',
+      dueDate: DateTime.now().add(
+        Duration(days: 1),
+      ),
+      timeRequired: 1.5,
     ),
   ];
 
@@ -42,10 +51,10 @@ class Tasks with ChangeNotifier {
     return items.where((tsk) => tsk.isStarred).toList();
   }
 
-  List<Task> get recentTasks {
+  List<Task> get nextWeekTasks {
     return _items.where((tsk) {
-      return tsk.dueDate.isAfter(
-        DateTime.now().subtract(
+      return tsk.dueDate.isBefore(
+        DateTime.now().add(
           Duration(days: 7),
         ),
       );
@@ -59,11 +68,11 @@ class Tasks with ChangeNotifier {
       );
       var totalSum = 0.0;
 
-      for (var i = 0; i < recentTasks.length; i++) {
-        if (recentTasks[i].dueDate.day == weekDay.day &&
-            recentTasks[i].dueDate.month == weekDay.month &&
-            recentTasks[i].dueDate.year == weekDay.year) {
-          totalSum += recentTasks[i].timeRequired;
+      for (var i = 0; i < nextWeekTasks.length; i++) {
+        if (nextWeekTasks[i].dueDate.day == weekDay.day &&
+            nextWeekTasks[i].dueDate.month == weekDay.month &&
+            nextWeekTasks[i].dueDate.year == weekDay.year) {
+          totalSum += nextWeekTasks[i].timeRequired;
         }
       }
 
@@ -74,7 +83,7 @@ class Tasks with ChangeNotifier {
         'day': DateFormat.E().format(weekDay).substring(0, 2),
         'hours': totalSum
       };
-    }).reversed.toList();
+    }).toList();
   }
 
   double get totalTime {

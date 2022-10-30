@@ -10,7 +10,7 @@ class TodayView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tasksData = Provider.of<Tasks>(context, listen: true);
-    final thisWeekTasks = tasksData.recentTasks;
+    final thisWeekTasks = tasksData.nextWeekTasks;
     final groupedTasksRequiredTime = tasksData.groupedTasksValues;
     final totalRequiredTime = tasksData.totalTime;
 

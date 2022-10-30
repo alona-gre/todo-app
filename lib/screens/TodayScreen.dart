@@ -34,7 +34,7 @@ class _TodayScreenState extends State<TodayScreen> {
           children: <Widget>[
             TodayView(),
             Container(
-              height: 200,
+              height: 600,
               child: OutlineList(),
             )
           ],
