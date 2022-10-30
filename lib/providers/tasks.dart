@@ -57,7 +57,7 @@ class Tasks with ChangeNotifier {
     notifyListeners();
   }
 
-  void _deleteTask(String tskId) {
+  void deleteTask(String tskId) {
     _items.remove(tskId);
     notifyListeners();
   }

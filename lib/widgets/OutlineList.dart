@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/Task.dart';
+import 'package:todo_app/screens/TaskPreviewScreen.dart';
 import '../widgets/TaskListItem.dart';
 import '../providers/tasks.dart';
 
@@ -14,7 +14,23 @@ class OutlineList extends StatelessWidget {
     final tasksData = Provider.of<Tasks>(context, listen: true);
     final tasks = tasksData.items;
 
-    return ListView.builder(
+    return
+
+        // GestureDetector(
+        //       onPanUpdate: (details) {
+        //         // Swiping in right direction.
+        //         if (details.delta.dx > 0) {}
+        //         // Swiping in left direction.
+        //         if (details.delta.dx < 0) {
+        //           Navigator.of(context).pushNamed(
+        //             TaskPreviewScreen.routeName,
+        //             arguments: tasks[i].id,
+        //           );
+        //         }
+        //       },
+        //       child:
+
+        ListView.builder(
       itemBuilder: (context, i) => ChangeNotifierProvider.value(
         // create: (c) => tasks[i],
         value: tasks[i],
