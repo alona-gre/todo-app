@@ -42,8 +42,23 @@ class Tasks with ChangeNotifier {
     );
   }
 
-  void addTask() {
-    // tasks.add(value);
+  void addTask(String tskTitle, DateTime chosenDate) {
+    final newTsk = Task(
+      id: DateTime.now().toString(),
+      title: tskTitle,
+      dueDate: chosenDate,
+    );
+    _items.add(newTsk);
+    notifyListeners();
+  }
+
+  void startAddTask(String tskTitle, DateTime chosenDate) {
+    // opens modal sheet to add a new task
+    notifyListeners();
+  }
+
+  void _deleteTask(String tskId) {
+    _items.remove(tskId);
     notifyListeners();
   }
 

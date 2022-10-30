@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import './ChartBar.dart';
 import '../../providers/tasks.dart';
 
-class TodayView extends StatelessWidget {
+class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tasksData = Provider.of<Tasks>(context, listen: true);

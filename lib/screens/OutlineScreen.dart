@@ -15,7 +15,7 @@ class OutlineScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green[600],
-        onPressed: () => null,
+        onPressed: () {},
         child: const Icon(Icons.add, color: Colors.white),
       ),
     );

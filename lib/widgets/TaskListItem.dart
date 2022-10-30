@@ -30,18 +30,14 @@ class _OutlineTaskListState extends State<TaskListItem> {
     );
 
     return Consumer<Task>(
-      builder: ((context, task, child) => GestureDetector(
-            onPanUpdate: (details) {
-              // Swiping in right direction.
-              if (details.delta.dx > 0) {}
-              // Swiping in left direction.
-              if (details.delta.dx < 0) {
-                Navigator.of(context).pushNamed(
-                  TaskPreviewScreen.routeName,
-                  arguments: task.id,
-                );
-              }
-            },
+      builder: ((context, task, child) => Dismissible(
+            key: ValueKey(task.id),
+            background: Container(
+              color: Theme.of(context).errorColor,
+              child: Icon(
+                Icons.delete,
+              ),
+            ),
             child: Card(
               elevation: 5,
               margin: EdgeInsets.symmetric(vertical: 4, horizontal: 5),

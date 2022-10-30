@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/widgets/OutlineList.dart';
 
-import '../widgets/todayView/TodayView.dart';
+import '../widgets/todayView/Chart.dart';
 import '../widgets/MainDrawer.dart';
 
 class TodayScreen extends StatefulWidget {
@@ -32,7 +32,7 @@ class _TodayScreenState extends State<TodayScreen> {
           //mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            TodayView(),
+            Chart(),
             Container(
               height: 600,
               child: OutlineList(),
