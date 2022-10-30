@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
+            iconTheme: IconThemeData(color: Colors.black54),
           ),
         ),
         home: OutlineScreen(),

@@ -48,7 +48,7 @@ class Tasks with ChangeNotifier {
   }
 
   List<Task> get starredTasks {
-    return items.where((tsk) => tsk.isStarred).toList();
+    return _items.where((tsk) => tsk.isStarred).toList();
   }
 
   List<Task> get nextWeekTasks {

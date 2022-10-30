@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/widgets/OutlineList.dart';
 
-import '../widgets/TodayView.dart';
+import '../widgets/todayView/TodayView.dart';
 import '../widgets/MainDrawer.dart';
 
 class TodayScreen extends StatefulWidget {
@@ -22,7 +22,7 @@ class _TodayScreenState extends State<TodayScreen> {
         title: Text('Today'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.add, color: Colors.black87),
+            icon: Icon(Icons.add, color: Colors.black54),
             onPressed: () {},
           ),
         ],

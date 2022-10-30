@@ -2,9 +2,8 @@ import 'package:intl/intl.dart';
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
 
-import '../models/Task.dart';
-import '../widgets/ChartBar.dart';
-import '../providers/tasks.dart';
+import './ChartBar.dart';
+import '../../providers/tasks.dart';
 
 class TodayView extends StatelessWidget {
   @override
@@ -23,7 +22,7 @@ class TodayView extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.all(10),
-              child: Text(
+              child: const Text(
                 'Total hours required',
                 style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),
               ),
@@ -37,7 +36,7 @@ class TodayView extends StatelessWidget {
                       data['day'],
                       data['hours'],
                       totalRequiredTime == 0.0
-                          ? 0.0
+                          ? 0
                           : (data['hours'] as double) / totalRequiredTime),
                 );
               }).toList(),
