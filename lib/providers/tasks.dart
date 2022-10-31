@@ -42,10 +42,10 @@ class Tasks with ChangeNotifier {
     );
   }
 
-  void addTask(String tskTitle, DateTime chosenDate) {
+  void addTask(String taskTitle, DateTime chosenDate) {
     final newTsk = Task(
       id: DateTime.now().toString(),
-      title: tskTitle,
+      title: taskTitle,
       dueDate: chosenDate,
     );
     _items.add(newTsk);
@@ -57,9 +57,14 @@ class Tasks with ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteTask(String tskId) {
-    _items.remove(tskId);
-    notifyListeners();
+  // void deleteTask(String taskId) {
+  //   _items.remove(taskId);
+  //   notifyListeners();
+  // }
+
+  void deleteTask(String taskId) {
+    final taskIndex = _items.indexWhere((task) => task.id == taskId);
+    _items.removeAt(taskIndex);
   }
 
   List<Task> get starredTasks {
