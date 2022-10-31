@@ -19,7 +19,6 @@ enum Urgency {
 class Task with ChangeNotifier {
   final String id;
   final String title;
-  final bool isSelected;
   final String? notes;
   final DateTime dueDate;
   final DateTime? startDate;
@@ -28,6 +27,7 @@ class Task with ChangeNotifier {
   final Importance? importance;
   final Urgency? urgency;
   final double timeRequired;
+  bool isSelected;
   bool isStarred;
   final String? context;
   final bool? isFolder;
@@ -36,7 +36,6 @@ class Task with ChangeNotifier {
   Task({
     required this.id,
     required this.title,
-    this.isSelected = false,
     this.notes,
     required this.dueDate,
     this.startDate,
@@ -45,6 +44,7 @@ class Task with ChangeNotifier {
     this.importance,
     this.urgency,
     this.timeRequired = 0,
+    this.isSelected = false,
     this.isStarred = false,
     this.context = ' ',
     this.isFolder = false,
@@ -55,4 +55,9 @@ class Task with ChangeNotifier {
     isStarred = !isStarred;
     notifyListeners();
   }
+
+  // void toggleSelected() {
+  //   isSelected = !isSelected;
+  //   notifyListeners();
+  // }
 }

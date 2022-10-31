@@ -5,17 +5,20 @@ import 'package:intl/intl.dart';
 import '../models/Task.dart';
 import '../providers/tasks.dart';
 
+import '../screens/TaskPreviewScreen.dart';
+
 class TaskListItem extends StatefulWidget {
   @override
   State<TaskListItem> createState() => _OutlineTaskListState();
 }
 
 class _OutlineTaskListState extends State<TaskListItem> {
-  //int? selectedIndex = null;
+  // int? selectedIndex = null;
 
   @override
   Widget build(BuildContext context) {
-    // final task = Provider.of<Task>(context);
+    // final tasksData = Provider.of<Tasks>(context, listen: true);
+    // final tasks = tasksData.items;
 
     var yellow = Icon(
       Icons.star,
@@ -28,14 +31,21 @@ class _OutlineTaskListState extends State<TaskListItem> {
             elevation: 5,
             margin: EdgeInsets.symmetric(vertical: 4, horizontal: 5),
             child: ListTile(
-                contentPadding: EdgeInsetsDirectional.only(start: 3),
+                // contentPadding: EdgeInsetsDirectional.only(start: 3),
                 // selected: selectedIndex == index ? true : false,
                 // selectedTileColor: Color.fromARGB(255, 210, 232, 250),
                 // onTap: () {
                 //   setState(() {
                 //     selectedIndex = index;
+                //     task.toggleSelected();
                 //   });
-                // },
+
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    TaskPreviewScreen.routeName,
+                    arguments: task.id,
+                  );
+                },
                 leading: IconButton(
                   onPressed: null,
                   icon: Icon(Icons.check_box_outline_blank,
