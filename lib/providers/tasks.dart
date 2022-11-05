@@ -42,18 +42,16 @@ class Tasks with ChangeNotifier {
     );
   }
 
-  void addTask(String taskTitle, DateTime chosenDate) {
+  void addTask(Task task) {
     final newTsk = Task(
       id: DateTime.now().toString(),
-      title: taskTitle,
-      dueDate: chosenDate,
+      title: task.title,
+      timeRequired: task.timeRequired,
+      dueDate: task.dueDate,
+      context: task.context,
+      notes: task.notes,
     );
     _items.add(newTsk);
-    notifyListeners();
-  }
-
-  void startAddTask(String tskTitle, DateTime chosenDate) {
-    // opens modal sheet to add a new task
     notifyListeners();
   }
 
@@ -68,7 +66,7 @@ class Tasks with ChangeNotifier {
 
   List<Task> get nextWeekTasks {
     return _items.where((tsk) {
-      return tsk.dueDate.isBefore(
+      return tsk.dueDate!.isBefore(
         DateTime.now().add(
           Duration(days: 7),
         ),
@@ -84,9 +82,9 @@ class Tasks with ChangeNotifier {
       var totalSum = 0.0;
 
       for (var i = 0; i < nextWeekTasks.length; i++) {
-        if (nextWeekTasks[i].dueDate.day == weekDay.day &&
-            nextWeekTasks[i].dueDate.month == weekDay.month &&
-            nextWeekTasks[i].dueDate.year == weekDay.year) {
+        if (nextWeekTasks[i].dueDate!.day == weekDay.day &&
+            nextWeekTasks[i].dueDate!.month == weekDay.month &&
+            nextWeekTasks[i].dueDate!.year == weekDay.year) {
           totalSum += nextWeekTasks[i].timeRequired;
         }
       }

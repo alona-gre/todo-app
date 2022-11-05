@@ -20,7 +20,7 @@ class Task with ChangeNotifier {
   final String id;
   final String title;
   final String? notes;
-  final DateTime dueDate;
+  final DateTime? dueDate;
   final DateTime? startDate;
   final DateTime? time;
   final DateTime? reminder;
@@ -37,7 +37,7 @@ class Task with ChangeNotifier {
     required this.id,
     required this.title,
     this.notes,
-    required this.dueDate,
+    this.dueDate,
     this.startDate,
     this.time,
     this.reminder,

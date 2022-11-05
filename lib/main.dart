@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/screens/TodayScreen.dart';
+import 'package:todo_app/widgets/NewTask.dart';
 
 import './models/Palette.dart';
 
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
           TaskEditScreen.routeName: (ctx) => TaskEditScreen(),
           StarredScreen.routeName: (ctx) => StarredScreen(),
           TodayScreen.routeName: (ctx) => TodayScreen(),
+          NewTask.routeName: (ctx) => NewTask(),
         },
       ),
     );

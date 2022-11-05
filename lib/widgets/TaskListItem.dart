@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
 import '../models/Task.dart';
-import '../providers/tasks.dart';
 
 import '../screens/TaskPreviewScreen.dart';
 
@@ -64,7 +63,9 @@ class _OutlineTaskListState extends State<TaskListItem> {
                       style: TextStyle(color: Colors.grey[800]),
                     ),
                     Text(
-                      DateFormat.MMMEd().format(task.dueDate),
+                      task.dueDate != null
+                          ? DateFormat.MMMEd().format(task.dueDate as DateTime)
+                          : '',
                       style: TextStyle(color: Colors.grey[800]),
                     ),
                   ],

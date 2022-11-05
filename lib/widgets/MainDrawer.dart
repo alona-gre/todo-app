@@ -27,7 +27,7 @@ class MainDrawer extends StatelessWidget {
                     icon: Icon(Icons.inbox),
                     onPressed: () {
                       // Navigator.of(context)
-                      //     .pushReplacementNamed(StarredScreen.routeName);
+                      //     .pushReplacementNamed(InboxScreen.routeName);
                     },
                   ),
                   const Text("Inbox"),
