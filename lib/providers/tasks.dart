@@ -55,6 +55,16 @@ class Tasks with ChangeNotifier {
     notifyListeners();
   }
 
+  void updateTask(String id, Task updatedTask) {
+    final taskIndex = _items.indexWhere((tsk) => tsk.id == id);
+    if (taskIndex >= 0) {
+      _items[taskIndex] = updatedTask;
+      notifyListeners();
+    } else {
+      print('...');
+    }
+  }
+
   void deleteTask(String taskId) {
     final taskIndex = _items.indexWhere((task) => task.id == taskId);
     _items.removeAt(taskIndex);
