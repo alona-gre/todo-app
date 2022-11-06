@@ -14,6 +14,8 @@ class NewTask extends StatefulWidget {
 }
 
 class _NewTaskState extends State<NewTask> {
+  // final _titleFocus = FocusNode();
+  final _hoursFocus = FocusNode();
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate;
@@ -29,11 +31,11 @@ class _NewTaskState extends State<NewTask> {
   void _submitForm() {
     _form.currentState!.save;
 
-    // final isValid = _form.currentState!.validate();
+    final isValid = _form.currentState!.validate();
 
-    // if (!isValid) {
-    //   return;
-    // }
+    if (!isValid) {
+      return;
+    }
 
     final enteredTitle = _titleController.text;
     final enteredAmount = double.parse(_amountController.text);
@@ -47,7 +49,6 @@ class _NewTaskState extends State<NewTask> {
 
     Provider.of<Tasks>(context, listen: false).addTask(_newTask);
     Navigator.of(context).pop();
-    print(_newTask.title);
     print(_newTask.title);
     print(_newTask.timeRequired);
     print(_newTask.dueDate);
@@ -68,6 +69,14 @@ class _NewTaskState extends State<NewTask> {
       });
     });
     print('...');
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    _titleController.dispose();
+    _amountController.dispose();
+    super.dispose();
   }
 
   @override
@@ -100,6 +109,7 @@ class _NewTaskState extends State<NewTask> {
                 controller: _amountController,
                 keyboardType: const TextInputType.numberWithOptions(
                     signed: true, decimal: true),
+                textInputAction: TextInputAction.done,
                 onSubmitted: (value) {
                   _newTask = Task(
                     id: null.toString(),

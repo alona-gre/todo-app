@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:intl/intl.dart';
 
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
@@ -37,33 +38,77 @@ class TaskPreviewScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                IconButton(
-                  onPressed: null,
-                  icon: Icon(Icons.check_box_outline_blank,
-                      size: 35, color: Colors.grey[400]),
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.grey[800],
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  IconButton(
+                    onPressed: null,
+                    icon: Icon(Icons.check_box_outline_blank,
+                        size: 35, color: Colors.grey[400]),
                   ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(
-                      TaskEditScreen.routeName,
-                      arguments: taskId,
-                    );
-                  },
-                  child: Text(
-                    taskOnPreview.title,
-                    style: TextStyle(fontSize: 20),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.grey[800],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                        TaskEditScreen.routeName,
+                        arguments: taskId,
+                      );
+                    },
+                    child: Text(
+                      taskOnPreview.title,
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(Icons.watch, size: 15, color: Colors.grey[400]),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.grey[800],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                        TaskEditScreen.routeName,
+                        arguments: taskId,
+                      );
+                    },
+                    child: Text(
+                      ('${taskOnPreview.timeRequired} hours'),
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(Icons.calendar_month, size: 15, color: Colors.grey[400]),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.grey[800],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                        TaskEditScreen.routeName,
+                        arguments: taskId,
+                      );
+                    },
+                    child: Text(
+                      DateFormat.MMMEd()
+                          .format(taskOnPreview.dueDate as DateTime),
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ));
   }
 }
