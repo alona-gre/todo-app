@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../widgets/OutlineList.dart';
 import '../widgets/MainDrawer.dart';
 import '../widgets/NewTask.dart';
-import '../widgets/NewTask.dart';
 
 class OutlineScreen extends StatelessWidget {
   void _startAddTask(BuildContext ctx) {

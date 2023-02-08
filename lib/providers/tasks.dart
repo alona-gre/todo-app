@@ -18,16 +18,8 @@ class Tasks with ChangeNotifier {
       dueDate: DateTime.now().add(
         Duration(days: 2),
       ),
+      dueDateTime: TimeOfDay.now(),
       timeRequired: 3.5,
-    ),
-    Task(
-      id: 't3',
-      title: 'Send a report',
-      context: '@Office',
-      dueDate: DateTime.now().add(
-        Duration(days: 1),
-      ),
-      timeRequired: 1.5,
     ),
   ];
 

@@ -41,7 +41,7 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
       Provider.of<Tasks>(context, listen: false).addTask(_editedTask);
     }
 
-    Navigator.of(context).pop;
+    Navigator.of(context).pop();
     print(_editedTask.title);
     print(_editedTask.timeRequired);
     // print(_editedTask.dueDate);

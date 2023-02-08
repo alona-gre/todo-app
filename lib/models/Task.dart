@@ -19,14 +19,15 @@ enum Urgency {
 class Task with ChangeNotifier {
   final String id;
   final String title;
-  final String? notes;
+  final double timeRequired;
+
   final DateTime? dueDate;
   final DateTime? startDate;
-  final DateTime? time;
+  final TimeOfDay? dueDateTime;
   final DateTime? reminder;
   final Importance? importance;
   final Urgency? urgency;
-  final double timeRequired;
+  final String? notes;
   bool isSelected;
   bool isStarred;
   final String? context;
@@ -39,7 +40,7 @@ class Task with ChangeNotifier {
     this.notes,
     this.dueDate,
     this.startDate,
-    this.time,
+    this.dueDateTime,
     this.reminder,
     this.importance,
     this.urgency,

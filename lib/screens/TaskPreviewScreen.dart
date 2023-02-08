@@ -68,7 +68,7 @@ class TaskPreviewScreen extends StatelessWidget {
               ),
               Row(
                 children: <Widget>[
-                  Icon(Icons.watch, size: 15, color: Colors.grey[400]),
+                  Icon(Icons.timer, size: 15, color: Colors.grey[400]),
                   TextButton(
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.grey[800],
@@ -102,6 +102,28 @@ class TaskPreviewScreen extends StatelessWidget {
                     child: Text(
                       DateFormat.MMMEd()
                           .format(taskOnPreview.dueDate as DateTime),
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(Icons.watch, size: 15, color: Colors.grey[400]),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.grey[800],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                        TaskEditScreen.routeName,
+                        arguments: taskId,
+                      );
+                    },
+                    child: Text(
+                      taskOnPreview.dueDateTime != null
+                          ? taskOnPreview.dueDateTime!.format(context)
+                          : '',
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
