@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../models/Task.dart';
 
+import '../providers/tasks.dart';
 import '../screens/TaskPreviewScreen.dart';
 
 class TaskListItem extends StatefulWidget {
@@ -16,8 +17,8 @@ class _OutlineTaskListState extends State<TaskListItem> {
 
   @override
   Widget build(BuildContext context) {
-    // final tasksData = Provider.of<Tasks>(context, listen: true);
-    // final tasks = tasksData.items;
+    final tasksData = Provider.of<Tasks>(context, listen: false);
+    final tasks = tasksData.items;
 
     var yellow = Icon(
       Icons.star,
@@ -40,10 +41,8 @@ class _OutlineTaskListState extends State<TaskListItem> {
                 //   });
 
                 onTap: () {
-                  Navigator.of(context).pushNamed(
-                    TaskPreviewScreen.routeName,
-                    arguments: task.id,
-                  );
+                  Navigator.of(context).pushNamed(TaskPreviewScreen.routeName,
+                      arguments: task.id);
                 },
                 leading: IconButton(
                   onPressed: null,

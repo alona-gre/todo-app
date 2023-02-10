@@ -10,13 +10,14 @@ class Tasks with ChangeNotifier {
       title: 'Buy milk',
       context: '@Home',
       dueDate: DateTime.now(),
+      dueDateTime: TimeOfDay.now(),
       timeRequired: 4.5,
     ),
     Task(
       id: 't2',
       title: 'Call boss',
       dueDate: DateTime.now().add(
-        Duration(days: 2),
+        const Duration(days: 2),
       ),
       dueDateTime: TimeOfDay.now(),
       timeRequired: 3.5,
@@ -40,6 +41,7 @@ class Tasks with ChangeNotifier {
       title: task.title,
       timeRequired: task.timeRequired,
       dueDate: task.dueDate,
+      dueDateTime: task.dueDateTime,
       context: task.context,
       notes: task.notes,
     );
@@ -52,9 +54,15 @@ class Tasks with ChangeNotifier {
     if (taskIndex >= 0) {
       _items[taskIndex] = updatedTask;
       notifyListeners();
+      print('updated');
     } else {
       print('...');
     }
+  }
+
+  void editTask(Task task) {
+    deleteTask(task.id);
+    addTask(task);
   }
 
   void deleteTask(String taskId) {

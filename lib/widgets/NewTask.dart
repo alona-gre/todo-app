@@ -55,12 +55,12 @@ class _NewTaskState extends State<NewTask> {
         dueDateTime: _selectedTime,
       ),
     );
-
-    Navigator.of(context).pop();
     print(_newTask.title);
     print(_newTask.timeRequired);
     print(_newTask.dueDate);
     print(_newTask.dueDateTime);
+
+    Navigator.of(context).pop();
   }
 
   void _presentDatePicker() {
@@ -124,7 +124,7 @@ class _NewTaskState extends State<NewTask> {
                 decoration: const InputDecoration(labelText: 'Title'),
                 controller: _titleController,
                 keyboardType: TextInputType.text,
-                textInputAction: TextInputAction.next,
+                textInputAction: TextInputAction.done,
                 onChanged: (value) {
                   _newTask = Task(
                     id: null.toString(),
