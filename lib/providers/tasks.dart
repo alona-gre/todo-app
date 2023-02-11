@@ -15,6 +15,13 @@ class Tasks with ChangeNotifier {
     ),
     Task(
       id: 't2',
+      title: 'Send the report',
+      dueDate: null,
+      dueDateTime: null,
+      timeRequired: 0.3,
+    ),
+    Task(
+      id: 't3',
       title: 'Call boss',
       dueDate: DateTime.now().add(
         const Duration(days: 2),

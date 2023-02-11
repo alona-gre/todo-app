@@ -16,6 +16,35 @@ class TaskPreviewScreen extends StatelessWidget {
     final taskOnPreview =
         Provider.of<Tasks>(context, listen: true).findById(taskId);
 
+    bool isVisible = false;
+
+    bool showVisibleDueDate() {
+      if (taskOnPreview.dueDate != null) {
+        isVisible = true;
+      } else {
+        isVisible = false;
+      }
+      return isVisible;
+    }
+
+    bool showVisibleDueDateTime() {
+      if (taskOnPreview.dueDateTime != null) {
+        isVisible = true;
+      } else {
+        isVisible = false;
+      }
+      return isVisible;
+    }
+
+    bool showVisibleDueDateIcon() {
+      if (taskOnPreview.dueDate != null || taskOnPreview.dueDateTime != null) {
+        isVisible = true;
+      } else {
+        isVisible = false;
+      }
+      return isVisible;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Task Preview'),
@@ -61,7 +90,7 @@ class TaskPreviewScreen extends StatelessWidget {
               ],
             ),
             Row(
-              children: <Widget>[
+              children: [
                 Icon(Icons.timer, size: 15, color: Colors.grey[400]),
                 TextButton(
                   style: TextButton.styleFrom(
@@ -74,68 +103,62 @@ class TaskPreviewScreen extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    ('${taskOnPreview.timeRequired} hours'),
-                    style: TextStyle(fontSize: 15),
+                    taskOnPreview.timeRequired.toString(),
+                    style: const TextStyle(fontSize: 15),
                   ),
                 ),
               ],
             ),
             Row(
               children: <Widget>[
-                Icon(Icons.calendar_month, size: 15, color: Colors.grey[400]),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.grey[800],
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(
-                      TaskEditScreen.routeName,
-                      arguments: taskId,
-                    );
-                  },
-                  child: Text(
-                    DateFormat.MMMEd()
-                        .format(taskOnPreview.dueDate as DateTime),
-                    style: TextStyle(fontSize: 15),
+                Visibility(
+                  visible: showVisibleDueDateIcon(),
+                  child: Icon(Icons.calendar_month,
+                      size: 15, color: Colors.grey[400]),
+                ),
+                Visibility(
+                  visible: showVisibleDueDate(),
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.grey[800],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                        TaskEditScreen.routeName,
+                        arguments: taskId,
+                      );
+                    },
+                    child: Text(
+                      taskOnPreview.dueDate != null
+                          ? DateFormat.MMMEd()
+                              .format(taskOnPreview.dueDate as DateTime)
+                          : '',
+                      style: TextStyle(fontSize: 15),
+                    ),
                   ),
                 ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.grey[800],
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(
-                      TaskEditScreen.routeName,
-                      arguments: taskId,
-                    );
-                  },
-                  child: Text(
-                    taskOnPreview.dueDateTime!.format(context),
-                    style: TextStyle(fontSize: 15),
+                Visibility(
+                  visible: showVisibleDueDateTime(),
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.grey[800],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                        TaskEditScreen.routeName,
+                        arguments: taskId,
+                      );
+                    },
+                    child: Text(
+                      taskOnPreview.dueDateTime != null
+                          ? taskOnPreview.dueDateTime!.format(context)
+                          : '',
+                      style: TextStyle(fontSize: 15),
+                    ),
                   ),
                 ),
               ],
             ),
-            Row(
-              children: <Widget>[
-                Icon(Icons.watch, size: 15, color: Colors.grey[400]),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.grey[800],
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(
-                      TaskEditScreen.routeName,
-                      arguments: taskId,
-                    );
-                  },
-                  child: Text(
-                    taskOnPreview.dueDateTime!.format(context),
-                    style: TextStyle(fontSize: 15),
-                  ),
-                ),
-              ],
-            )
           ],
         ),
       ),
