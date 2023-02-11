@@ -3,9 +3,7 @@ import "package:intl/intl.dart";
 
 import "package:provider/provider.dart";
 import 'package:todo_app/models/Task.dart';
-import 'package:todo_app/screens/StarredScreen.dart';
 import "../providers/tasks.dart";
-import 'TaskPreviewScreen.dart';
 
 class TaskEditScreen extends StatefulWidget {
   const TaskEditScreen({super.key});
@@ -31,18 +29,6 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
   );
 
   var _isInit = true;
-  var _initValues = {
-    'title': '',
-    'timeRequired': '',
-    'dueDate': '',
-    'dueDateTime': '',
-  };
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   void _saveForm() {
     final isValid = _form.currentState!.validate();
@@ -51,18 +37,26 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
     }
     _form.currentState!.save();
     if (_editedTask.id.isNotEmpty) {
-      Provider.of<Tasks>(context, listen: false)
-          .updateTask(_editedTask.id, _editedTask);
-      print('something');
+      Provider.of<Tasks>(context, listen: false).updateTask(
+        _editedTask.id,
+        Task(
+          id: _editedTask.id,
+          title: _editedTask.title,
+          timeRequired: _editedTask.timeRequired,
+          dueDate: _selectedDate,
+          dueDateTime: _selectedTime,
+        ),
+      );
     } else {
       Provider.of<Tasks>(context, listen: false).addTask(_editedTask);
     }
 
     Navigator.of(context).pop();
-    print(_editedTask.title);
-    print(_editedTask.timeRequired);
-    print(_editedTask.dueDate);
-    print(_editedTask.dueDateTime);
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -73,18 +67,13 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
       if (taskId.isNotEmpty) {
         _editedTask =
             Provider.of<Tasks>(context, listen: false).findById(taskId);
-        _initValues = {
-          'title': '',
-          'timeRequired': '',
-          'dueDate': _editedTask.dueDate.toString(),
-          'dueDateTime': _editedTask.dueDateTime.toString(),
-        };
         _titleController.text = _editedTask.title;
         _timeRequiredController.text = _editedTask.timeRequired.toString();
+        _selectedDate = _editedTask.dueDate;
+        _selectedTime = _editedTask.dueDateTime;
       }
     }
     _isInit = false;
-
     super.didChangeDependencies();
   }
 
@@ -185,57 +174,55 @@ class _TaskEditScreenState extends State<TaskEditScreen> {
                   );
                 },
               ),
-              TextFormField(
-                decoration: InputDecoration(labelText: "Due Date"),
-                initialValue: _initValues['dueDate'],
-                textInputAction: TextInputAction.next,
-                onChanged: (newValue) {
-                  _editedTask = Task(
-                    id: null.toString(),
-                    title: _editedTask.title,
-                    timeRequired: _editedTask.timeRequired,
-                    dueDate: _editedTask.dueDate,
-                    dueDateTime: _editedTask.dueDateTime,
-                  );
-                },
+              SizedBox(
+                height: 20,
               ),
-              Row(
+              const Text(style: TextStyle(fontSize: 12), 'Date & Time'),
+              Column(
                 children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      _selectedDate == null
-                          ? 'No date chosen!'
-                          : 'Picked Date: ${DateFormat.yMd().format(_selectedDate!)}',
-                    ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          _selectedDate == null
+                              ? 'No date chosen!'
+                              : 'Picked Date: ${DateFormat.yMd().format(_selectedDate!)}',
+                        ),
+                      ),
+                      TextButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          onPrimary: Theme.of(context).primaryColor,
+                          textStyle: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        onPressed: _presentDatePicker,
+                        child: _selectedDate == null
+                            ? const Text('Set date')
+                            : const Text('Edit date'),
+                      ),
+                    ],
                   ),
-                  TextButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Theme.of(context).primaryColor,
-                      textStyle: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    child: Text('Choose date'),
-                    onPressed: _presentDatePicker,
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      _selectedTime == null
-                          ? 'No time set!'
-                          : 'Picked Date: ${_selectedTime!.format(context)}',
-                    ),
-                  ),
-                  TextButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Theme.of(context).primaryColor,
-                      textStyle: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    child: Text('Choose time'),
-                    onPressed: _presentTimePicker,
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          _selectedTime == null
+                              ? 'No time set!'
+                              : 'Picked Date: ${_selectedTime!.format(context)}',
+                        ),
+                      ),
+                      TextButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          onPrimary: Theme.of(context).primaryColor,
+                          textStyle: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        onPressed: _presentTimePicker,
+                        child: _selectedTime == null
+                            ? const Text('Set time')
+                            : const Text('Edit time'),
+                      ),
+                    ],
                   ),
                 ],
               ),

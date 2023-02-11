@@ -99,6 +99,21 @@ class TaskPreviewScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 15),
                   ),
                 ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.grey[800],
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                      TaskEditScreen.routeName,
+                      arguments: taskId,
+                    );
+                  },
+                  child: Text(
+                    taskOnPreview.dueDateTime!.format(context),
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
               ],
             ),
             Row(
