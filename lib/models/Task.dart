@@ -29,6 +29,7 @@ class Task with ChangeNotifier {
   final Urgency? urgency;
   final String? notes;
   bool isSelected;
+  bool isCompleted;
   bool isStarred;
   final String? context;
   final bool? isFolder;
@@ -46,6 +47,7 @@ class Task with ChangeNotifier {
     this.urgency,
     this.timeRequired = 0,
     this.isSelected = false,
+    this.isCompleted = false,
     this.isStarred = false,
     this.context = ' ',
     this.isFolder = false,
@@ -54,6 +56,12 @@ class Task with ChangeNotifier {
 
   void toggleStar() {
     isStarred = !isStarred;
+
+    notifyListeners();
+  }
+
+  void toggleCompleted() {
+    isCompleted = !isCompleted;
     notifyListeners();
   }
 

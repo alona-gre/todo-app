@@ -8,7 +8,12 @@ import '../models/Task.dart';
 import '../widgets/TaskListItem.dart';
 import '../providers/tasks.dart';
 
-class StarredList extends StatelessWidget {
+class StarredList extends StatefulWidget {
+  @override
+  State<StarredList> createState() => _StarredListState();
+}
+
+class _StarredListState extends State<StarredList> {
   @override
   Widget build(BuildContext context) {
     final tasksData = Provider.of<Tasks>(context, listen: true);
@@ -16,14 +21,8 @@ class StarredList extends StatelessWidget {
 
     return ListView.builder(
       itemBuilder: (context, i) => ChangeNotifierProvider.value(
-        // create: (c) => tasks[i],
         value: tasks[i],
-        child: TaskListItem(
-            //   tasks[i].id,
-            //   tasks[i].title,
-            //   tasks[i].context,
-            //   tasks[i].dueDate,
-            ),
+        child: TaskListItem(),
       ),
       itemCount: tasks.length,
     );
