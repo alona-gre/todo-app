@@ -62,6 +62,7 @@ class Task with ChangeNotifier {
 
   void toggleCompleted() {
     isCompleted = !isCompleted;
+
     notifyListeners();
   }
 

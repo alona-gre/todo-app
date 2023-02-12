@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
-import '../models/Task.dart';
+import '../providers/Task.dart';
 
 import '../providers/tasks.dart';
 import '../screens/TaskPreviewScreen.dart';
@@ -23,8 +23,8 @@ class _OutlineTaskListState extends State<TaskListItem> {
       color: Colors.yellow.shade600,
     );
 
-    return Consumer<Task>(
-      builder: ((context, task, child) => Card(
+    return Consumer2<Task, Tasks>(
+      builder: ((context, task, tasks, child) => Card(
             elevation: 5,
             margin: EdgeInsets.symmetric(vertical: 4, horizontal: 5),
             child: ListTile(
@@ -42,9 +42,11 @@ class _OutlineTaskListState extends State<TaskListItem> {
                     .pushNamed(TaskPreviewScreen.routeName, arguments: task.id);
               },
               leading: Checkbox(
-                value: task.isCompleted,
-                onChanged: (_) => task.toggleCompleted(),
-              ),
+                  value: task.isCompleted,
+                  onChanged: (_) {
+                    task.toggleCompleted();
+                    tasks.updateCompleted(task);
+                  }),
               title: Text(
                 task.title,
                 style: Theme.of(context).textTheme.headline6,
@@ -71,6 +73,7 @@ class _OutlineTaskListState extends State<TaskListItem> {
                         size: 35, color: Colors.grey[400]),
                 onPressed: () {
                   task.toggleStar();
+                  tasks.updateStarred(task);
                 },
               ),
             ),

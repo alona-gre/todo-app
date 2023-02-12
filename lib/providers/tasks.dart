@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../models/Task.dart';
+import 'Task.dart';
 
 class Tasks with ChangeNotifier {
   final List<Task> _items = [
@@ -81,17 +81,39 @@ class Tasks with ChangeNotifier {
     return _items.where((tsk) => tsk.isStarred).toList();
   }
 
+  void updateStarred(Task task) {
+    final taskIsStarred = starredTasks.contains(task);
+    if (taskIsStarred) {
+      starredTasks.remove(task);
+    } else {
+      starredTasks.add(task);
+    }
+    notifyListeners();
+  }
+
   List<Task> get completedTasks {
     return _items.where((tsk) => tsk.isCompleted).toList();
   }
 
+  void updateCompleted(Task task) {
+    final taskIsCompleted = completedTasks.contains(task);
+    if (taskIsCompleted) {
+      completedTasks.remove(task);
+    } else {
+      completedTasks.add(task);
+    }
+
+    notifyListeners();
+  }
+
   List<Task> get nextWeekTasks {
     return _items.where((tsk) {
-      return tsk.dueDate!.isBefore(
-        DateTime.now().add(
-          Duration(days: 7),
-        ),
-      );
+      return tsk.dueDate != null &&
+          tsk.dueDate!.isBefore(
+            DateTime.now().add(
+              Duration(days: 7),
+            ),
+          );
     }).toList();
   }
 

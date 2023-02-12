@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/Task.dart';
+import '../providers/Task.dart';
 import '../widgets/TaskListItem.dart';
 import '../providers/tasks.dart';
 
