@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/TodayScreen.dart';
 
+import '../screens/CompletedScreen.dart';
 import '../screens/StarredScreen.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -73,7 +74,15 @@ class MainDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushReplacementNamed('/');
             },
-          )
+          ),
+          ListTile(
+            leading: Icon(Icons.done),
+            title: const Text("Completed"),
+            onTap: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(CompletedScreen.routeName);
+            },
+          ),
         ],
       ),
     );

@@ -81,6 +81,10 @@ class Tasks with ChangeNotifier {
     return _items.where((tsk) => tsk.isStarred).toList();
   }
 
+  List<Task> get completedTasks {
+    return _items.where((tsk) => tsk.isCompleted).toList();
+  }
+
   List<Task> get nextWeekTasks {
     return _items.where((tsk) {
       return tsk.dueDate!.isBefore(

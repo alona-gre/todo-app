@@ -8,12 +8,7 @@ import '../models/Task.dart';
 import '../widgets/TaskListItem.dart';
 import '../providers/tasks.dart';
 
-class StarredList extends StatefulWidget {
-  @override
-  State<StarredList> createState() => _StarredListState();
-}
-
-class _StarredListState extends State<StarredList> {
+class StarredList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tasksData = Provider.of<Tasks>(context, listen: true);

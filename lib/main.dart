@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/screens/CompletedScreen.dart';
 import 'package:todo_app/screens/TodayScreen.dart';
+import 'package:todo_app/widgets/CompletedList.dart';
 import 'package:todo_app/widgets/NewTask.dart';
 
 import './models/Palette.dart';
@@ -19,8 +21,8 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: Tasks(),
+    return ChangeNotifierProvider(
+      create: (_) => Tasks(),
       child: MaterialApp(
         title: 'To Do App',
         theme: ThemeData(
@@ -53,6 +55,7 @@ class MyApp extends StatelessWidget {
           StarredScreen.routeName: (ctx) => StarredScreen(),
           TodayScreen.routeName: (ctx) => TodayScreen(),
           NewTask.routeName: (ctx) => NewTask(),
+          CompletedScreen.routeName: (ctx) => CompletedScreen(),
         },
       ),
     );
